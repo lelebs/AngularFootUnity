@@ -1,0 +1,66 @@
+<app-navbar [errors]="errors" [route]="'Leitor'"></app-navbar>
+<kendo-grid
+    [data]="view | async"
+>
+    <ng-template kendoGridToolbarTemplate>
+        <button 
+            kendoButton 
+            (click)="onAdd()" 
+            [icon]="'add'"
+            class="k-button"
+        >
+            Adicionar
+        </button>
+        <button 
+            kendoButton 
+            (click)="onFilter()" 
+            [icon]="'filter'"
+            class="k-button"
+        >
+            Filtrar
+        </button>
+    </ng-template>
+    <kendo-grid-command-column width="100">
+        <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+            <button 
+                kendoButton                 
+                [icon]="'pencil'"
+                class="k-button" 
+                (click)="onUpdate(dataItem)"
+            >
+            </button>
+            <button 
+                kendoButton                 
+                [icon]="'connector'"
+                class="k-button" 
+                (click)="onQrCode(dataItem)"
+            >
+            </button>
+        </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-column field="id" title="Código">
+    </kendo-grid-column>
+    <kendo-grid-column field="descricao" title="Descrição">
+    </kendo-grid-column>
+    <kendo-grid-column field="macAddress" title="Mac Address">
+    </kendo-grid-column>
+</kendo-grid>
+
+<div *ngIf="showModal">
+    <kendo-dialog>
+        <kendo-dialog-titlebar>
+            <div style="font-size: 18px; line-height: 1.3em;">
+                <span class="k-icon k-i-print"></span> QRCode 
+            </div>
+        </kendo-dialog-titlebar>
+
+        <qrcode [qrdata]="qrCodeData" [width]="250" elementType="'img'"></qrcode>
+
+        <kendo-dialog-actions>
+            <button kendoButton (click)="onDownload()" primary="true">
+                Download
+            </button>
+            <button kendoButton (click)="showModal = !showModal" primary="true">Fechar</button>
+        </kendo-dialog-actions>
+    </kendo-dialog>
+</div>

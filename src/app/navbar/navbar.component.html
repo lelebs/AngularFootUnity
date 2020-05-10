@@ -1,0 +1,20 @@
+<nav class="navbar navbar-light bg-light">
+    <h4 style="padding-left: 16px;">
+        FootUnity - {{ route }}
+    </h4>
+    <div class="justify-content-end" *ngIf="auth">
+        <span>Olá, {{ auth.nome }}  </span>
+        <button
+            kendoButton
+            [icon]="'logout'"
+            class="k-button"
+            (click)="onExit()"
+        >
+            Sair
+        </button>
+    </div>
+</nav>
+
+<div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+    {{ error }}
+</div>

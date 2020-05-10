@@ -1,0 +1,36 @@
+<app-navbar [errors]="errors" [route]="'Login'"></app-navbar>
+
+<form class="k-form" [formGroup]="form">
+    <div class="row" >
+        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-3">
+            <span>Email:</span>
+            <input kendoTextBox 
+                type="email"
+                formControlName="Email"
+                class="form-control"
+            >
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-3">
+            <span>Senha:</span>
+            <input kendoTextBox 
+                type="password"
+                formControlName="Password"
+                class="form-control"
+            >
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+        <div class="col-md-6 col-xs-12 col-sm-12 col-lg-3">
+            <button kendoButton 
+                (click)="onSubmit()" 
+                [icon]="'save'"
+                class="k-button"
+                [disabled]="!form.valid"
+            >
+                Logar
+            </button>
+        </div>
+    </div>
+</form>
